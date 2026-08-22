@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { mockEmployees } from '../utils/mockData';
+import { useAuthStore } from '../store/authStore';
 
 function DashboardPage() {
   const total = mockEmployees.length;
   const active = mockEmployees.filter(e => e.status === 'active').length;
   const onLeave = mockEmployees.filter(e => e.status === 'on_leave').length;
 
-  const userName = localStorage.getItem('userName');
+  const userName = useAuthStore(state => state.user?.name) || 'invitado';
 
   const stats = [
     { label: 'Total empleados', value: total, bg: 'bg-blue-100', text: 'text-blue-800' },

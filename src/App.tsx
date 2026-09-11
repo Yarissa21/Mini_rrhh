@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage';
 import EmployeesPage from './pages/EmployeesPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import { useAuthStore } from './store/authStore';
+import EmployeeDetailPage from './pages/EmployeeDetailPage';
 
 // Layout con Header para páginas autenticadas
 function AppLayout({ children }: { children: ReactNode }) {
@@ -46,6 +47,14 @@ function App() {
           <ProtectedRoute>
             <AppLayout>
               <EmployeesPage />
+            </AppLayout>
+          </ProtectedRoute>
+        } />
+
+        <Route path="/empleados/:id" element={
+          <ProtectedRoute>
+            <AppLayout>
+              <EmployeeDetailPage />
             </AppLayout>
           </ProtectedRoute>
         } />

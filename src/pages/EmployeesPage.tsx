@@ -5,6 +5,7 @@ import EmployeeCard from '../components/EmployeeCard';
 import StatsBadge from '../components/StatsBadge';
 import FormField from '../components/FormField';
 import { useEmployees, useCreateEmployee, useUpdateEmployee, useDeleteEmployee } from '../hook/useEmployees';
+import { useNavigate } from 'react-router-dom';
 
 const formFieldClass = 'w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent';
 
@@ -20,6 +21,8 @@ function EmployeesPage() {
   const [search, setSearch] = useState<string>('');
   const [selectedDepartment, setSelectedDepartment] = useState<Department | ''>('');
   const [selectedStatus, setSelectedStatus] = useState<EmployeeStatus | ''>('');
+
+  const navigate = useNavigate();
 
   // Estado del SERVIDOR: la lista de empleados, filtrada. TanStack Query se encarga
   // de pedirla, cachearla y mantenerla sincronizada — no hay useEffect ni useState local.
@@ -58,8 +61,8 @@ function EmployeesPage() {
 
   // Memoizamos el handler para no recrearlo en cada render
   const handleSelectEmployee = useCallback((employee: Employee) => {
-    alert(`Empleado: ${employee.name}\nCargo: ${employee.position}\nDepartamento: ${employee.department}`);
-  }, []);
+    navigate(`/empleados/${employee.id}`);
+  }, [navigate]);
 
   const handleDeleteEmployee = useCallback((id: number) => {
     if (!confirm('¿Estás seguro de eliminar este empleado?')) return;

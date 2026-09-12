@@ -164,7 +164,9 @@
       "salary": 6000,
       "hireDate": "2018-05-10",
       "status": "active",
-      "role": "employee"
+      "role": "employee",
+      "phone": "45786978",
+      "avatarUrl": ""
     },
     {
       "name": "Yarissa Hernández",
